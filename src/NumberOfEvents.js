@@ -20,7 +20,7 @@ class NumberOfEvents extends Component {
             <div className="NumberOfEvents">
                 <input
                     type="number"
-                    className="numberOfEvents"
+                    className="inputNumberOfEvents"
                     value={this.state.numberOfEvents}
                     onChange={this.handleInputChange}
                 />
