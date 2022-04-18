@@ -14,14 +14,14 @@ describe('<NumberOfEvents /> component', () => {
         expect(NumberOfEventsWrapper.find('.numberOfEvents')).toHaveLength(1);
     });
 
-    test('renders a list of numbers', () => {
+    test('renders a list of ', () => {
         expect(NumberOfEventsWrapper.find('.inputNumberOfEvents')).toHaveLength(1);
     });
 
     test('change state when number input changes', () => {
 
-        NumberOfEventsWrapper.setState({ numberOfEvents: 32 });
-        NumberOfEventsWrapper.find('.inputNumberOfEvents').simulate('change', { target: { value: "13" } });
+        NumberOfEventsWrapper.setState({ numberOfEvents: '32' });
+        NumberOfEventsWrapper.find('.numberOfEvents').simulate('change', { target: { value: "13" } });
         expect(NumberOfEventsWrapper.state('numberOfEvents')).toEqual("13");
     });
 

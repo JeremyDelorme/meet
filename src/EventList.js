@@ -12,6 +12,7 @@ class EventList extends Component {
                     </li>
                 )}
             </ul>
+
         );
     }
 }
