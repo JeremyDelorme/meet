@@ -10,7 +10,9 @@ describe('<EventList /> component', () => {
         expect(EventListWrapper.find(Event)).toHaveLength(mockData.length);
     });
 
-    test('component state when user types in a number of events less than 32', () => {
-        // I don't understand how to do this test, and I don't find any answer in the other students submissions...
+    test('render change of events when user types in number of events less than 32', () => {
+        const sliceOfData = mockData.slice(0, 1);
+        const EventListWrapper = shallow(<EventList events={sliceOfData} />);
+        expect(EventListWrapper.find(Event)).toHaveLength(sliceOfData.length);
     });
 });

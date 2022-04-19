@@ -28,7 +28,9 @@ describe('<NumberOfEvents /> component', () => {
         expect(NumberOfEventsWrapper.find('.infoText').text('.infoText')).toBe(infoText);
     });
 
-    test('component state when when user types number not in 1-32 range', () => {
-        //I don't know how to do this test. I saw some people use the update method, but I donÙ't understand how to use it.
-    })
+    test('component state when user types number not in 1-32 range', () => {
+        const eventObject = { target: { value: 32 } };
+        NumberOfEventsWrapper.find('.numberOfEventsInput').simulate('change', eventObject);
+        expect(NumberOfEventsWrapper.state('eventCouter')).toBe("");
+    });
 });
