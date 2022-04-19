@@ -10,6 +10,20 @@ class NumberOfEvents extends Component {
         }
     }
 
+    handleInputChanged = (event) => {
+        const newCounter = event.target.value;
+        if (isNaN(newCounter) || newCounter < 1) {
+            this.setState({
+                eventCounter: '',
+                infoText: 'Please write a number',
+            })
+        } else {
+            this.setState({
+                eventCounter: newCounter,
+                infoText: ''
+            });
+        };
+    }
 
     render() {
         const { infoText } = this.state;
