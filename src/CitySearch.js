@@ -3,11 +3,7 @@ import React, { Component } from 'react';
 class CitySearch extends Component {
 
     state = {
-<<<<<<< Updated upstream
-        query: "",
-=======
         query: '',
->>>>>>> Stashed changes
         suggestions: [],
         showSuggestions: undefined
     }
