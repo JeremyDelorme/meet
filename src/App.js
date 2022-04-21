@@ -10,7 +10,7 @@ class App extends Component {
   state = {
     events: [],
     locations: [],
-    NumberOfEvents: 32,
+    numberOfEvents: 32,
   };
 
   updateNumberOfEvents = (numberOfEvents) => {
@@ -22,7 +22,7 @@ class App extends Component {
     );
   };
 
-  updateEvents = (location, eventCount) => {
+  updateEvents = (location) => {
     getEvents().then((events) => {
       const locationEvents = (location === 'all') ?
         events :
@@ -58,6 +58,7 @@ class App extends Component {
           events={this.state.events}
           numberOfEvents={this.state.numberOfEvents}
         />
+        <NumberOfEvents />
       </div>
     );
   }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import NumberOfEvents from './NumberOfEvents';
 
 class CitySearch extends Component {
 
@@ -34,6 +35,7 @@ class CitySearch extends Component {
                 <input
                     type="text"
                     className="city"
+                    placeholder="Search here for a city"
                     value={this.state.query}
                     onChange={this.handleInputChanged}
                     onFocus={() => { this.setState({ showSuggestions: true }) }}

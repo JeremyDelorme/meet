@@ -29,8 +29,14 @@ describe('<NumberOfEvents /> component', () => {
     });
 
     test('number of events change to 32 when the user types a number out of 1-32 range', () => {
-        const eventObject = { target: { value: 32 } };
+        const eventObject = { target: { value: 33 } };
         NumberOfEventsWrapper.find('.numberOfEventsInput').simulate('change', eventObject);
         expect(NumberOfEventsWrapper.state('eventCounter')).toBe(32);
+    });
+
+    test('number of events change to 32 when the user types a number within 1-32 range', () => {
+        const eventObject = { target: { value: 3 } };
+        NumberOfEventsWrapper.find('.numberOfEventsInput').simulate('change', eventObject);
+        expect(NumberOfEventsWrapper.state('eventCounter')).toBe(eventObject.target.value);
     });
 });
