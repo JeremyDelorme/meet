@@ -35,7 +35,6 @@ describe('<CitySearch /> component', () => {
 
     test('render list of suggestions correctly', () => {
         const locations = extractLocations(mockData);
-        // const CitySearchWrapper = shallow(<CitySearch />);
         CitySearchWrapper.setState({ suggestions: locations });
         const suggestions = CitySearchWrapper.state('suggestions');
         expect(CitySearchWrapper.find('.suggestions li')).toHaveLength(suggestions.length + 1);
@@ -80,4 +79,8 @@ describe('<CitySearch /> component', () => {
         expect(CitySearchWrapper.state('showSuggestions')).toBe(false);
         expect(CitySearchWrapper.find('.suggestions').prop('style')).toEqual({ display: 'none' });
     });
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 });
