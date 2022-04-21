@@ -12,9 +12,9 @@ class NumberOfEvents extends Component {
 
     handleInputChanged = (event) => {
         const newCounter = event.target.value;
-        if (isNaN(newCounter) || newCounter < 1) {
+        if (newCounter > 32 || newCounter < 1) {
             this.setState({
-                eventCounter: '',
+                eventCounter: 32,
                 infoText: 'Please write a number',
             })
         } else {
