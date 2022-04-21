@@ -28,9 +28,9 @@ describe('<NumberOfEvents /> component', () => {
         expect(NumberOfEventsWrapper.find('.infoText').text('.infoText')).toBe(infoText);
     });
 
-    test('component state when user types number not in 1-32 range', () => {
-        const eventObject = { target: { value: 40 } };
+    test('number of events change to 32 when the user types a number out of 1-32 range', () => {
+        const eventObject = { target: { value: 32 } };
         NumberOfEventsWrapper.find('.numberOfEventsInput').simulate('change', eventObject);
-        expect(NumberOfEventsWrapper.state('eventCounter')).toBe(40);
+        expect(NumberOfEventsWrapper.state('eventCounter')).toBe(32);
     });
 });
