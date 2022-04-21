@@ -12,8 +12,18 @@ import { getEvents, extractLocations } from './api';
 class App extends Component {
   state = {
     events: [],
-    locations: []
-  }
+    locations: [],
+    NumberOfEvents: 32,
+  };
+
+  updateNumberOfEvents = (numberOfEvents) => {
+    this.setState(
+      {
+        numberOfEvents,
+      },
+      this.updateEvents(this.state.locations, numberOfEvents)
+    );
+  };
 
   updateEvents = (location) => {
     getEvents().then((events) => {
