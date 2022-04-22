@@ -70,7 +70,7 @@ describe('<App /> integration', () => {
         AppWrapper.unmount();
     });
 
-    test("Passing the number of events as a prop", () => {
+    test("Passing the number of events", () => {
         const AppWrapper = mount(<App />);
         const AppNumberOfEventsState = AppWrapper.state("numberOfEvents");
         expect(AppNumberOfEventsState).not.toEqual(undefined);
