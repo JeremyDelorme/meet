@@ -32,7 +32,7 @@ class NumberOfEvents extends Component {
                 <input
                     type="integer"
                     className="numberOfEventsInput"
-                    value={this.state.query}
+                    value={this.state.numberOfEvents}
                     onChange={this.handleInputChanged}
                 />
                 <p className="infoText">{infoText}</p>
