@@ -90,7 +90,7 @@ describe('<App /> integration', () => {
         let AppWrapper = mount(<App />);
         const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
         const eventObject = { target: { value: 16 } };
-        NumberOfEventsWrapper.find(".numberOfEvents__input").at(0).simulate("change", eventObject);
+        NumberOfEventsWrapper.find(".numberOfEventsInput").at(0).simulate("change", eventObject);
         expect(AppWrapper.state("numberOfEvents")).toBe(16);
         AppWrapper.unmount();
     });
@@ -99,7 +99,7 @@ describe('<App /> integration', () => {
         let AppWrapper = mount(<App />);
         const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
         const eventObject = { target: { value: 3 } };
-        NumberOfEventsWrapper.find(".numberOfEvents__input").at(0).simulate("change", eventObject);
+        NumberOfEventsWrapper.find(".numberOfEventsInput").at(0).simulate("change", eventObject);
         await getEvents();
         AppWrapper.update();
         const EventListWrapper = AppWrapper.find(EventList);
@@ -112,7 +112,7 @@ describe('<App /> integration', () => {
         let AppWrapper = mount(<App />);
         const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
         const eventObject = { target: { value: 1 } };
-        NumberOfEventsWrapper.find(".numberOfEvents__input").simulate("change", eventObject);
+        NumberOfEventsWrapper.find(".numberOfEventsInput").simulate("change", eventObject);
         await getEvents();
         AppWrapper.update();
         const EventListWrapper = AppWrapper.find(EventList);
