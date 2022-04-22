@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 class NumberOfEvents extends Component {
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
 
         this.state = {
             eventCounter: 32,
@@ -25,6 +25,7 @@ class NumberOfEvents extends Component {
         }
         this.props.updateNumberOfEvents(newCounter);
     }
+
 
     render() {
         const { infoText } = this.state;
