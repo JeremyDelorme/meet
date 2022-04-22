@@ -77,4 +77,6 @@ describe('<App /> integration', () => {
         expect(AppWrapper.find(EventList).props().numberOfEvents).toEqual(32);
         AppWrapper.unmount();
     });
+
+    // test("")
 });
