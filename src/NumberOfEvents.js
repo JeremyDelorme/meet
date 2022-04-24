@@ -5,7 +5,7 @@ class NumberOfEvents extends Component {
         super(props)
 
         this.state = {
-            eventCounter: 32,
+            eventCounter: props.numberOfEvents,
             infoText: ''
         }
     }
@@ -20,19 +20,21 @@ class NumberOfEvents extends Component {
         } else {
             this.setState({
                 eventCounter: newCounter,
-                infoText: ''
+                infoText: ""
             });
         };
     }
 
     render() {
-        const { infoText } = this.state;
+        const { infoText, eventCounter } = this.state;
         return (
             <div className="numberOfEvents">
+                <p className="numbercount">Number of events</p>
                 <input
-                    type="integer"
+                    type="number"
                     className="numberOfEventsInput"
-                    value={this.state.query}
+                    placeholder="Number of events"
+                    value={eventCounter}
                     onChange={this.handleInputChanged}
                 />
                 <p className="infoText">{infoText}</p>
