@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import NumberOfEvents from './NumberOfEvents';
+import PropTypes from 'prop-types';
+import { query } from 'express';
 
 class CitySearch extends Component {
 
@@ -10,7 +12,7 @@ class CitySearch extends Component {
     }
 
     handleInputChanged = (event) => {
-        const value = event.target.value;
+        const value = (event.target.value);
         this.setState({ showSuggestions: true });
         const suggestions = this.props.locations.filter((location) => {
             return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
@@ -40,6 +42,7 @@ class CitySearch extends Component {
     }
 
     render() {
+        const { query, suggestion, showSuggestions } = this.state;
         return (
             <div className="CitySearch">
                 <input
@@ -64,6 +67,12 @@ class CitySearch extends Component {
             </div>
         );
     }
+}
+
+CitySearch.propTypes = {
+    query: PropTypes.string,
+    suggestion: PropTypes.string,
+    showSuggestions: PropTypes.string,
 }
 
 export default CitySearch;

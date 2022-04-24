@@ -86,11 +86,12 @@ describe('<App /> integration', () => {
         AppWrapper.unmount();
     });
 
-    test("When number input changes, state has to be updated", () => {
+    test("When number input changes, state has to be updated", async () => {
         let AppWrapper = mount(<App />);
         const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
         const eventObject = { target: { value: 16 } };
         NumberOfEventsWrapper.find(".numberOfEventsInput").at(0).simulate("change", eventObject);
+        await getEvents();
         expect(AppWrapper.state("numberOfEvents")).toBe(16);
         AppWrapper.unmount();
     });

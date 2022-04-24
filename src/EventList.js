@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Event from './Event';
+import PropTypes from 'prop-types';
 
 class EventList extends Component {
     render() {
@@ -16,5 +17,10 @@ class EventList extends Component {
         );
     }
 }
+
+EventList.propTypes = {
+    events: PropTypes.string,
+}
+
 
 export default EventList;

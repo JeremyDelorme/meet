@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class NumberOfEvents extends Component {
     constructor(props) {
@@ -43,6 +44,11 @@ class NumberOfEvents extends Component {
             </div>
         );
     }
+}
+
+NumberOfEvents.propTypes = {
+    infoText: PropTypes.string,
+    eventCounter: PropTypes.string,
 }
 
 export default NumberOfEvents;

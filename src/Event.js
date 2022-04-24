@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
 
 class Event extends Component {
     state = {
@@ -50,6 +51,8 @@ class Event extends Component {
 
 }
 
-
+Event.propTypes = {
+    event: PropTypes.string,
+}
 
 export default Event;
