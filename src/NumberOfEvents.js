@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
 class NumberOfEvents extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
 
         this.state = {
-            eventCounter: 32,
+            eventCounter: props.numberOfEvents,
             infoText: ''
         }
     }
@@ -28,7 +28,7 @@ class NumberOfEvents extends Component {
 
 
     render() {
-        const { infoText } = this.state;
+        const { infoText, eventCounter } = this.state;
         return (
             <div className="numberOfEvents">
                 <p className="numbercount">Number of events</p>
@@ -36,7 +36,7 @@ class NumberOfEvents extends Component {
                     type="number"
                     className="numberOfEventsInput"
                     placeholder="Number of events"
-                    value={this.state.numberOfEvents}
+                    value={eventCounter}
                     onChange={this.handleInputChanged}
                 />
                 <p className="infoText">{infoText}</p>
