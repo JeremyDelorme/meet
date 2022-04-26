@@ -32,7 +32,7 @@ describe('<EventList /> component', () => {
         EventWrapper.setState({
             collapsed: true
         });
-        EventWrapper.find('.show-details').simulate('click');
+        await EventWrapper.find('.show-details').simulate('click');
         expect(EventWrapper.state('collapsed')).toBe(false);
     });
 
@@ -40,7 +40,7 @@ describe('<EventList /> component', () => {
         EventWrapper.setState({
             collapsed: false
         });
-        EventWrapper.find('.hide-details').simulate('click');
+        await EventWrapper.find('.hide-details').simulate('click');
         expect(EventWrapper.state('collapsed')).toBe(true);
     });
 

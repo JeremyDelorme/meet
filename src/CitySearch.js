@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import NumberOfEvents from './NumberOfEvents';
 import PropTypes from 'prop-types';
-import { query } from 'express';
 
 class CitySearch extends Component {
 

@@ -60,7 +60,7 @@ describe('<CitySearch /> component', () => {
             query: 'Berlin'
         });
         const suggestions = CitySearchWrapper.state('suggestions');
-        CitySearchWrapper.find('.suggestions li').at(0).simulate('click');
+        await CitySearchWrapper.find('.suggestions li').at(0).simulate('click');
         expect(CitySearchWrapper.state("query")).toBe(suggestions[0]);
     });
 
@@ -75,7 +75,7 @@ describe('<CitySearch /> component', () => {
             query: 'Berlin',
             showSuggestions: undefined
         });
-        CitySearchWrapper.find('.suggestions li').at(0).simulate('click');
+        await CitySearchWrapper.find('.suggestions li').at(0).simulate('click');
         expect(CitySearchWrapper.state('showSuggestions')).toBe(false);
         expect(CitySearchWrapper.find('.suggestions').prop('style')).toEqual({ display: 'none' });
     });

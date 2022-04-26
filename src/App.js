@@ -5,7 +5,6 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { getEvents, extractLocations } from './api';
-import { PropTypes } from "prop-types";
 
 class App extends Component {
   state = {
@@ -62,9 +61,4 @@ class App extends Component {
   }
 }
 
-App.propTypes = {
-  CitySearch: PropTypes.string,
-  EventList: PropTypes.string,
-  NumberOfEvents: PropTypes.string,
-}
 export default App;
