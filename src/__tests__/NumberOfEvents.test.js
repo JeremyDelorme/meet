@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { shallow } from 'enzyme';
 import NumberOfEvents from '../NumberOfEvents';
@@ -7,7 +6,7 @@ import NumberOfEvents from '../NumberOfEvents';
 describe('<NumberOfEvents /> component', () => {
     let NumberOfEventsWrapper;
     beforeAll(() => {
-        NumberOfEventsWrapper = shallow(<NumberOfEvents />)
+        NumberOfEventsWrapper = shallow(<NumberOfEvents updateNumberOfEvents={() => { }} />)
     });
 
     test('render text input', () => {
@@ -28,15 +27,15 @@ describe('<NumberOfEvents /> component', () => {
         expect(NumberOfEventsWrapper.find('.infoText').text('.infoText')).toBe(infoText);
     });
 
-    test('number of events change to 32 when the user types a number out of 1-32 range', () => {
+    test('number of events change to 32 when the user types a number out of 1-32 range', async () => {
         const eventObject = { target: { value: 33 } };
-        NumberOfEventsWrapper.find('.numberOfEventsInput').simulate('change', eventObject);
+        await NumberOfEventsWrapper.find('.numberOfEventsInput').simulate('change', eventObject);
         expect(NumberOfEventsWrapper.state('eventCounter')).toBe(32);
     });
 
-    test('number of events change to 32 when the user types a number within 1-32 range', () => {
+    test('number of events change to 32 when the user types a number within 1-32 range', async () => {
         const eventObject = { target: { value: 3 } };
-        NumberOfEventsWrapper.find('.numberOfEventsInput').simulate('change', eventObject);
+        await NumberOfEventsWrapper.find('.numberOfEventsInput').simulate('change', eventObject);
         expect(NumberOfEventsWrapper.state('eventCounter')).toBe(eventObject.target.value);
     });
 });

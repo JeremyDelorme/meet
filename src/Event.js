@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
 
 class Event extends Component {
     state = {
@@ -35,7 +36,7 @@ class Event extends Component {
                 </button>
 
                 {!collapsed &&
-                    <div className={`eventDetails ${this.state.collapsed ? "hide" : "show"}`}>
+                    <div className={`extra-details ${this.state.collapsed ? "hide" : "show"}`}>
                         <h3>About the event:</h3>
                         <a href={event.htmlLink} rel="noreferrer" target="_blank">
                             See details on Google Calendar
@@ -50,6 +51,8 @@ class Event extends Component {
 
 }
 
-
+Event.propTypes = {
+    event: PropTypes.object,
+}
 
 export default Event;
