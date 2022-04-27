@@ -19,7 +19,7 @@ class EventList extends Component {
 }
 
 EventList.propTypes = {
-    events: PropTypes.string,
+    events: PropTypes.arrayOf,
 }
 
 

@@ -52,7 +52,7 @@ class Event extends Component {
 }
 
 Event.propTypes = {
-    event: PropTypes.string,
+    event: PropTypes.object,
 }
 
 export default Event;
