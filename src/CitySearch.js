@@ -41,7 +41,7 @@ class CitySearch extends Component {
     }
 
     render() {
-        const { query } = this.state;
+        const { query, showSuggestions } = this.state;
         return (
             <div className="CitySearch">
                 <input
@@ -52,7 +52,7 @@ class CitySearch extends Component {
                     onChange={this.handleInputChanged}
                     onFocus={() => { this.setState({ showSuggestions: true }) }}
                 />
-                <ul className="suggestions" style={this.state.showSuggestions ? {} : { display: 'none' }}>
+                <ul className="suggestions" style={showSuggestions ? {} : { display: 'none' }}>
                     {this.state.suggestions.map((suggestion) => (
                         <li
                             key={suggestion}
