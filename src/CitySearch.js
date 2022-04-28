@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 class CitySearch extends Component {
 
@@ -48,7 +47,7 @@ class CitySearch extends Component {
                     type="text"
                     className="city"
                     placeholder="Search here for a city"
-                    value={this.state.query}
+                    value={query}
                     onChange={this.handleInputChanged}
                     onFocus={() => { this.setState({ showSuggestions: true }) }}
                 />
@@ -69,8 +68,8 @@ class CitySearch extends Component {
 }
 
 CitySearch.propTypes = {
-    suggestion: PropTypes.string,
-    showSuggestions: PropTypes.string,
+    locations: PropTypes.arrayOf(PropTypes.string).isRequired,
+    updateEvents: PropTypes.func.isRequired,
 }
 
 export default CitySearch;
