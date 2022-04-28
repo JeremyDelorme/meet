@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'react';
 
 class CitySearch extends Component {
 
