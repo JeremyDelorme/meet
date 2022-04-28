@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import NumberOfEvents from './NumberOfEvents';
 import PropTypes from 'prop-types';
 
 class CitySearch extends Component {
@@ -7,7 +6,8 @@ class CitySearch extends Component {
     state = {
         query: '',
         suggestions: [],
-        showSuggestions: undefined
+        showSuggestions: undefined,
+        infoText: ''
     }
 
     handleInputChanged = (event) => {
@@ -41,7 +41,7 @@ class CitySearch extends Component {
     }
 
     render() {
-        const { query, suggestion, showSuggestions } = this.state;
+        const { query } = this.state;
         return (
             <div className="CitySearch">
                 <input
@@ -69,7 +69,6 @@ class CitySearch extends Component {
 }
 
 CitySearch.propTypes = {
-    query: PropTypes.string,
     suggestion: PropTypes.string,
     showSuggestions: PropTypes.string,
 }
