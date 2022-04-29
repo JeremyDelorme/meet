@@ -55,6 +55,13 @@ describe('<CitySearch /> component', () => {
         expect(CitySearchWrapper.state("suggestions")).toEqual(filteredLocations);
     });
 
+    //NEWLY ADDED TEST
+    test('when the suggestion input does not contain any character', async () => {
+        const eventObject = { target: { value: '' } };
+        await CitySearchWrapper.find('.CitySearchInput').simulate('change', eventObject);
+        expect(CitySearchWrapper.state('.query')).toBe(value);
+    });
+
     test("selecting a suggestion should change query state", async () => {
         CitySearchWrapper.setState({
             query: 'Berlin'
@@ -79,4 +86,6 @@ describe('<CitySearch /> component', () => {
         expect(CitySearchWrapper.state('showSuggestions')).toBe(false);
         expect(CitySearchWrapper.find('.suggestions').prop('style')).toEqual({ display: 'none' });
     });
+
+
 });

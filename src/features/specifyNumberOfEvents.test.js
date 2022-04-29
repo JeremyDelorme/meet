@@ -10,7 +10,7 @@ defineFeature(feature, test => {
     test('The app should display 32 events by default', ({ given, when, then }) => {
         let AppWrapper;
         given('the user has not specified a number of events to show', () => {
-            AppWrapper = await mount(<App />);
+            AppWrapper = mount(<App />);
         });
 
         when('the user loads the data', () => {
@@ -27,7 +27,7 @@ defineFeature(feature, test => {
     test('When the user types a number into the textbox, the number of events displayed should match the input number', ({ given, when, then }) => {
         let AppWrapper;
         given('the main page is open', () => {
-            AppWrapper = await mount(<App />);
+            AppWrapper = mount(<App />);
         });
 
         when('the user types a number into the number of events textbox', () => {

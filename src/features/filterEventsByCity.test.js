@@ -1,5 +1,4 @@
 import React from 'react';
-import { mount } from 'enzyme';
 import App from '../App';
 import { mockData } from '../mock-data';
 import { loadFeature, defineFeature } from 'jest-cucumber';
