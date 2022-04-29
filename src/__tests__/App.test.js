@@ -103,10 +103,10 @@ describe("<App /> integration", () => {
     let AppWrapper = mount(<App />);
     const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
     const eventObject = { target: { value: 3 } };
-    NumberOfEventsWrapper.find(".numberOfEventsInput")
+    await NumberOfEventsWrapper.find(".numberOfEventsInput")
       .at(0)
       .simulate("change", eventObject);
-    await getEvents();
+
     AppWrapper.update();
     const EventListWrapper = AppWrapper.find(EventList);
     expect(AppWrapper.state("events")).toHaveLength(2);
@@ -118,11 +118,11 @@ describe("<App /> integration", () => {
     let AppWrapper = mount(<App />);
     const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
     const eventObject = { target: { value: 1 } };
-    NumberOfEventsWrapper.find(".numberOfEventsInput").simulate(
+    await NumberOfEventsWrapper.find(".numberOfEventsInput").simulate(
       "change",
       eventObject
     );
-    await getEvents();
+
     AppWrapper.update();
     const EventListWrapper = AppWrapper.find(EventList);
     expect(AppWrapper.state("events")).toHaveLength(1);
