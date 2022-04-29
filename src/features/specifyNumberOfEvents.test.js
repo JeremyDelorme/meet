@@ -17,7 +17,7 @@ defineFeature(feature, test => {
             AppWrapper.update();
         });
 
-        then('the default number of displayed events will be 32', () => {
+        then('32 events events should be displayed', () => {
             expect(AppWrapper.find('.event')).toHaveLength(2);
         });
 

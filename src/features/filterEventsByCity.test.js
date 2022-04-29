@@ -5,7 +5,6 @@ import { loadFeature, defineFeature } from 'jest-cucumber';
 import { mount, shallow } from 'enzyme';
 import CitySearch from '../CitySearch';
 import { extractLocations } from "../api";
-import React from "react";
 
 
 const feature = loadFeature('./src/features/filterEventsByCity.feature');

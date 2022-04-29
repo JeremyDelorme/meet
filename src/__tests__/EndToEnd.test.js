@@ -3,7 +3,7 @@ import puppeteer from 'puppeteer';
 describe('show/hide an event details', () => {
     let browser;
     let page;
-    jest.setTimeout(50000);
+    jest.setTimeout(3000);
     beforeAll(async () => {
         browser = await puppeteer.launch({
             headless: false,
@@ -42,7 +42,7 @@ describe('show/hide an event details', () => {
 describe("Filter events by city.", () => {
     let browser;
     let page;
-    jest.setTimeout(50000);
+    jest.setTimeout(3000);
     beforeAll(async () => {
         // browser = await puppeteer.launch();
 
