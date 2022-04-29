@@ -55,8 +55,7 @@ describe('<App /> integration', () => {
         const selectedIndex = Math.floor(Math.random() * (suggestions.length));
         const selectedCity = suggestions[selectedIndex];
         await CitySearchWrapper.instance().handleItemClicked(selectedCity);
-        const allEvents = await getEvents();
-        const eventsToShow = allEvents.filter(event => event.location === selectedCity);
+        const eventsToShow = mockData.filter(event => event.location === selectedCity);
         expect(AppWrapper.state('events')).toEqual(eventsToShow);
         AppWrapper.unmount();
     });
@@ -65,8 +64,7 @@ describe('<App /> integration', () => {
         const AppWrapper = mount(<App />);
         const suggestionItems = AppWrapper.find(CitySearch).find('.suggestions li');
         await suggestionItems.at(suggestionItems.length - 1).simulate('click');
-        const allEvents = await getEvents();
-        expect(AppWrapper.state('events')).toEqual(allEvents);
+        expect(AppWrapper.state('events')).toEqual(mockData);
         AppWrapper.unmount();
     });
 
@@ -86,11 +84,12 @@ describe('<App /> integration', () => {
         AppWrapper.unmount();
     });
 
-    test("When number input changes, state has to be updated", () => {
+    test("When number input changes, state has to be updated", async () => {
         let AppWrapper = mount(<App />);
         const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
         const eventObject = { target: { value: 16 } };
-        NumberOfEventsWrapper.find(".numberOfEventsInput").at(0).simulate("change", eventObject);
+        await NumberOfEventsWrapper.find(".numberOfEventsInput").at(0).simulate("change", eventObject);
+
         expect(AppWrapper.state("numberOfEvents")).toBe(16);
         AppWrapper.unmount();
     });
@@ -99,8 +98,8 @@ describe('<App /> integration', () => {
         let AppWrapper = mount(<App />);
         const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
         const eventObject = { target: { value: 3 } };
-        NumberOfEventsWrapper.find(".numberOfEventsInput").at(0).simulate("change", eventObject);
-        await getEvents();
+        await NumberOfEventsWrapper.find(".numberOfEventsInput").at(0).simulate("change", eventObject);
+
         AppWrapper.update();
         const EventListWrapper = AppWrapper.find(EventList);
         expect(AppWrapper.state("events")).toHaveLength(2);
@@ -112,8 +111,8 @@ describe('<App /> integration', () => {
         let AppWrapper = mount(<App />);
         const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
         const eventObject = { target: { value: 1 } };
-        NumberOfEventsWrapper.find(".numberOfEventsInput").simulate("change", eventObject);
-        await getEvents();
+        await NumberOfEventsWrapper.find(".numberOfEventsInput").simulate("change", eventObject);
+
         AppWrapper.update();
         const EventListWrapper = AppWrapper.find(EventList);
         expect(AppWrapper.state("events")).toHaveLength(1);
