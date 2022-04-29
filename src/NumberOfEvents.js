@@ -1,31 +1,31 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
 
 class NumberOfEvents extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       eventCounter: props.numberOfEvents,
-      infoText: ""
-    };
+      infoText: ''
+    }
   }
 
-  handleInputChanged = event => {
+  handleInputChanged = (event) => {
     const newCounter = event.target.value;
     if (newCounter > 32 || newCounter < 1) {
       this.setState({
         eventCounter: 32,
-        infoText: "Please write a number"
-      });
+        infoText: 'Please write a number',
+      })
     } else {
       this.setState({
         eventCounter: newCounter,
-        infoText: ""
+        infoText: ''
       });
     }
     this.props.updateNumberOfEvents(newCounter);
-  };
+  }
+
 
   render() {
     const { infoText, eventCounter } = this.state;
