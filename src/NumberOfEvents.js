@@ -46,9 +46,4 @@ class NumberOfEvents extends Component {
     }
 }
 
-NumberOfEvents.propTypes = {
-    infoText: PropTypes.string,
-    eventCounter: PropTypes.number,
-}
-
 export default NumberOfEvents;

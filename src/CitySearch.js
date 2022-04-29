@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import NumberOfEvents from './NumberOfEvents';
 import PropTypes from 'prop-types';
 
 class CitySearch extends Component {
@@ -7,7 +6,8 @@ class CitySearch extends Component {
     state = {
         query: '',
         suggestions: [],
-        showSuggestions: undefined
+        showSuggestions: undefined,
+        infoText: ''
     }
 
     handleInputChanged = (event) => {
@@ -41,18 +41,18 @@ class CitySearch extends Component {
     }
 
     render() {
-        const { query, suggestion, showSuggestions } = this.state;
+        const { query, showSuggestions } = this.state;
         return (
             <div className="CitySearch">
                 <input
                     type="text"
                     className="city"
                     placeholder="Search here for a city"
-                    value={this.state.query}
+                    value={query}
                     onChange={this.handleInputChanged}
                     onFocus={() => { this.setState({ showSuggestions: true }) }}
                 />
-                <ul className="suggestions" style={this.state.showSuggestions ? {} : { display: 'none' }}>
+                <ul className="suggestions" style={showSuggestions ? {} : { display: 'none' }}>
                     {this.state.suggestions.map((suggestion) => (
                         <li
                             key={suggestion}
@@ -69,9 +69,8 @@ class CitySearch extends Component {
 }
 
 CitySearch.propTypes = {
-    query: PropTypes.string,
-    suggestion: PropTypes.string,
-    showSuggestions: PropTypes.string,
+    locations: PropTypes.arrayOf(PropTypes.string).isRequired,
+    updateEvents: PropTypes.func.isRequired,
 }
 
 export default CitySearch;
