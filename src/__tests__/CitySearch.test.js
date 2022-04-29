@@ -58,7 +58,7 @@ describe('<CitySearch /> component', () => {
     //NEWLY ADDED TEST
     test('when the suggestion input does not contain any character', async () => {
         const eventObject = { target: { value: '' } };
-        await CitySearchWrapper.find('.CitySearchInput').simulate('change', eventObject);
+        await CitySearchWrapper.find('.city').simulate('change', eventObject);
         expect(CitySearchWrapper.state('.query')).toBe(value);
     });
 
