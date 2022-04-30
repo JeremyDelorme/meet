@@ -3,7 +3,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import App from "../App";
 
-const feature = loadFeature('./src/features/showHideEventDetails.feature');
+const feature = loadFeature('./src/features/showHideAnEventsDetail.feature');
 
 defineFeature(feature, test => {
     //TEST 1
