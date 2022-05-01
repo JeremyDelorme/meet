@@ -59,13 +59,13 @@ describe('<CitySearch /> component', () => {
     test('when the suggestion input does not contain any character', async () => {
         const eventObject = { target: { value: '111' } };
         await CitySearchWrapper.find('.city').simulate('change', eventObject);
-        expect(CitySearchWrapper.state('.query')).toBe(value);
+        expect(CitySearchWrapper.state('suggestions')).toEqual([])
     });
 
     test("selecting a suggestion should change query state", async () => {
-        CitySearchWrapper.setState({
-            query: 'Berlin'
-        });
+        const eventObject = { target: { value: 'Berlin' } };
+        await CitySearchWrapper.find('.city').at(0).simulate('change', eventObject);
+
         const suggestions = CitySearchWrapper.state('suggestions');
         await CitySearchWrapper.find('.suggestions li').at(0).simulate('click');
         expect(CitySearchWrapper.state("query")).toBe(suggestions[0]);

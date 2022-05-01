@@ -3,7 +3,7 @@ import puppeteer from 'puppeteer';
 describe('show/hide an event details', () => {
     let browser;
     let page;
-    jest.setTimeout(3000);
+    // jest.setTimeout(3000);
     beforeAll(async () => {
         browser = await puppeteer.launch({
             headless: false,
@@ -42,7 +42,7 @@ describe('show/hide an event details', () => {
 describe("Filter events by city.", () => {
     let browser;
     let page;
-    jest.setTimeout(3000);
+    // jest.setTimeout(3000);
     beforeAll(async () => {
         // browser = await puppeteer.launch();
 
@@ -66,13 +66,14 @@ describe("Filter events by city.", () => {
     });
 
     test("User should see a list of suggestions when they search for a city", async () => {
-        await page.type(".city", "Berlin", { delay: 100 }); //type slower than user
-        const countCities = await page.$$eval(".suggestions li", (element) => element.length);
-        expect(countCities).toBe(2);
+        await page.type(".city", "Berlin", { delay: 100 });
+        // const countCities = await page.$$eval(".suggestions li", (element) => element.length);
+        const suggestionList = await page.$$eval('.suggestions li');
+        expect(suggestionList).toHaveLength(2);
     });
 
     test("User can select a city from the suggested list", async () => {
-        await page.reload();
+        // await page.reload();
         await page.type(".city", "Berlin", { delay: 100 }); //type slower than user
         await page.click(".suggestions li");
         const countEvents = await page.$$eval(".event", (element) => element.length);

@@ -7,12 +7,12 @@ import CitySearch from '../CitySearch';
 import { extractLocations } from "../api";
 
 
-const feature = loadFeature('./src/features/filterEventsByCity.feature');
+const feature = loadFeature('src/features/filterEventsByCity.feature');
 const locations = extractLocations(mockData);
 
 defineFeature(feature, test => {
-    test('When user hasn\'t searched for a city, show upcoming events from all cities', ({ given, when, then }) => {
-        given('user hasn\'t searched for any city', () => {
+    test('When user hasn’t searched for a city, show upcoming events from all cities.', ({ given, when, then }) => {
+        given('user hasn’t searched for any city', () => {
 
         });
 
@@ -22,7 +22,7 @@ defineFeature(feature, test => {
             Appwrapper = mount(<App />);
         });
 
-        then('the user should see the list of upcoming events', () => {
+        then('the user should see the list of upcoming events.', () => {
             Appwrapper.update();
             expect(Appwrapper.find('.event')).toHaveLength(mockData.length);
         });
@@ -34,7 +34,7 @@ defineFeature(feature, test => {
             CitySearchWrapper = shallow(<CitySearch updateEvents={() => { }} locations={locations} />);
         });
 
-        when('user starts typing in the city textbox', () => {
+        when('the user starts typing in the city textbox', () => {
             CitySearchWrapper.find('.city').simulate('change', { target: { value: 'Berlin' } });
         });
 

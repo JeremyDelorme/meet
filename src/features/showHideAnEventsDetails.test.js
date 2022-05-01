@@ -3,7 +3,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import App from "../App";
 
-const feature = loadFeature('./src/features/showHideAnEventsDetail.feature');
+const feature = loadFeature('src/features/showHideAnEventsDetail.feature');
 
 defineFeature(feature, test => {
     //TEST 1
@@ -32,13 +32,13 @@ defineFeature(feature, test => {
 
         when('the user clicks on an event', () => {
             AppWrapper.update();
-            expect(AppWrapper.find('.eventMoreDetailsButton')).toHaveLength(2);
-            AppWrapper.find('.eventMoreDetailsButton').at(0).simulate('click');
+            expect(AppWrapper.find('.show-details')).toHaveLength(2);
+            AppWrapper.find('.show-details').at(0).simulate('click');
 
         });
 
         then('the event element should expand.', () => {
-            expect(AppWrapper.find('.eventMoreDetails')).toHaveLength(1);
+            expect(AppWrapper.find('.extra-details')).toHaveLength(1);
 
         });
     });
@@ -49,17 +49,16 @@ defineFeature(feature, test => {
         given('an event element is expanded', async () => {
             AppWrapper = await mount(<App />);
             AppWrapper.update();
-            AppWrapper.find('.eventMoreDetailsButton').at(0).simulate('click');
+            AppWrapper.find('.show-details').at(0).simulate('click');
         });
 
         when('the user clicks on an event', () => {
-            AppWrapper.find('.eventMoreDetailsButton').at(0).simulate('click');
-            expect(AppWrapper.find('.eventMoreDetails')).toHaveLength(0);
+            AppWrapper.find('.hide-details').at(0).simulate('click');
 
         });
 
         then('the event element should collapse.', () => {
-            expect(AppWrapper.find('.eventMoreDetails')).toHaveLength(0);
+            expect(AppWrapper.find('.extra-details')).toHaveLength(0);
         });
 
     });

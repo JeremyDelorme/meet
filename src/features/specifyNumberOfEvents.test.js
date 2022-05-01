@@ -3,7 +3,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import App from '../App';
 
-const feature = loadFeature('./src/features/specifyNumberOfEvents.feature');
+const feature = loadFeature('src/features/specifyNumberOfEvents.feature');
 
 defineFeature(feature, test => {
     //TEST 1
@@ -17,7 +17,7 @@ defineFeature(feature, test => {
             AppWrapper.update();
         });
 
-        then('32 events events should be displayed', () => {
+        then('32 events should be displayed.', () => {
             expect(AppWrapper.find('.event')).toHaveLength(2);
         });
 
@@ -32,7 +32,7 @@ defineFeature(feature, test => {
 
         when('the user types a number into the number of events textbox', () => {
             AppWrapper.update();
-            AppWrapper.find('.numberOfEventsInput').simulate('change', { target: { value: '28' } });
+            AppWrapper.find('.numberOfEventsInput').simulate('change', { target: { value: 1 } });
         });
         then('the number of events displayed should match the number input by the user unless there are fewer events than the specified number.', () => {
             AppWrapper.update();
