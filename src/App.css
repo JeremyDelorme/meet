@@ -198,6 +198,11 @@ input[type="number"] {
   font-family: "Roboto";
 }
 
+.alert {
+  position: fixed;
+  top: 20px;
+}
+
 
 
 @media only screen and (min-width: 992px) {
