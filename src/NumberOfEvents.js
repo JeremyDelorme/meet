@@ -7,7 +7,7 @@ class NumberOfEvents extends Component {
 
     this.state = {
       eventCounter: props.numberOfEvents,
-      infoText: ''
+      errorText: ''
     }
   }
 
@@ -16,7 +16,7 @@ class NumberOfEvents extends Component {
     if (newCounter > 32 || newCounter < 1) {
       this.setState({
         eventCounter: 32,
-        infoText: 'Please write a number from 1 to 32',
+        errorText: 'Please write a number from 1 to 32',
       })
     } else {
       this.setState({
@@ -29,9 +29,10 @@ class NumberOfEvents extends Component {
 
 
   render() {
-    const { infoText, eventCounter } = this.state;
+    const { errorText, eventCounter } = this.state;
     return (
       <div className="numberOfEvents">
+        <ErrorAlert text={errorText} />
         <p className="numbercount">Number of events</p>
         <input
           type="number"
