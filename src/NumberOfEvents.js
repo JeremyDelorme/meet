@@ -22,7 +22,7 @@ class NumberOfEvents extends Component {
       this.setState({
         eventCounter: newCounter,
         infoText: '',
-        errorText: ''
+        errorText: false
       });
     }
     this.props.updateNumberOfEvents(newCounter);
