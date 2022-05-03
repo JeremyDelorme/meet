@@ -21,7 +21,8 @@ class NumberOfEvents extends Component {
     } else {
       this.setState({
         eventCounter: newCounter,
-        infoText: ''
+        infoText: '',
+        errorText: ''
       });
     }
     this.props.updateNumberOfEvents(newCounter);
@@ -32,7 +33,6 @@ class NumberOfEvents extends Component {
     const { infoText, eventCounter } = this.state;
     return (
       <div className="numberOfEvents">
-        <ErrorAlert text={this.state.errorText} />
         <p className="numbercount">Number of events</p>
         <input
           type="number"
@@ -41,6 +41,7 @@ class NumberOfEvents extends Component {
           value={eventCounter}
           onChange={this.handleInputChanged}
         />
+        <ErrorAlert text={this.state.errorText} />
         <p className="infoText">{infoText}</p>
       </div>
     );
