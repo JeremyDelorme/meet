@@ -59,6 +59,12 @@ export const getEvents = async () => {
 
     const token = await getAccessToken();
 
+    if (!navigator.onLine) {
+        const data = localStorage.getItem("lastEvents");
+        NProgress.done();
+        return data ? JSON.parse(events).events : [];;
+    }
+
     if (token) {
         removeQuery();
         const url = 'https://ebglrc0grd.execute-api.eu-central-1.amazonaws.com/dev/api/get-events' + '/' + token;
@@ -68,6 +74,7 @@ export const getEvents = async () => {
             localStorage.setItem("lastEvents", JSON.stringify(result.data));
             localStorage.setItem("locations", JSON.stringify(locations));
         }
+
         NProgress.done();
         return result.data.events;
     }
