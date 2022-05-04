@@ -60,6 +60,7 @@ class App extends Component {
   }
 
   render() {
+    const warningText = this.state;
     return (
       <div className="App">
         <WarningAlert text={warningText} />
