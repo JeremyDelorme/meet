@@ -4,7 +4,7 @@ import './nprogress.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
-import WarningAlert from './Alert'
+import { WarningAlert } from './Alert'
 import { getEvents, extractLocations } from './api';
 
 class App extends Component {
@@ -60,10 +60,9 @@ class App extends Component {
   }
 
   render() {
-    const warningText = this.state;
     return (
       <div className="App">
-        <WarningAlert text={warningText} />
+        <WarningAlert warningText={this.state.warningText} />
         <CitySearch
           locations={this.state.locations}
           updateEvents={this.updateEvents} />
