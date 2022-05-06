@@ -18,7 +18,8 @@ class App extends Component {
     locations: [],
     numberOfEvents: 32,
     location: "all",
-    warningText: ''
+    warningText: '',
+    showWelcomeScreen: undefined
   };
 
   async componentDidMount() {
