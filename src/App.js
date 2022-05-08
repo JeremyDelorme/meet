@@ -6,7 +6,7 @@ import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { WarningAlert } from './Alert'
 import WelcomeScreen from './WelcomeScreen';
-import { getEvents, extractLocations, checkToken, getAccessToken } from
+import { getEvents, extractLocations, checkToken, getAccessToken, EventGenre } from
   './api';
 import {
   ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
@@ -25,30 +25,24 @@ class App extends Component {
   async componentDidMount() {
     this.mounted = true;
     const accessToken = localStorage.getItem('access_token');
-    const isTokenValid = (await checkToken(accessToken)).error ? false :
-      true;
+    const isTokenValid = (await checkToken(accessToken)).error ? false : true;
     const searchParams = new URLSearchParams(window.location.search);
     const code = searchParams.get("code");
-    this.setState({
-      showWelcomeScreen: !(code || isTokenValid)
-    });
+    this.setState({ showWelcomeScreen: !(code || isTokenValid) });
     if ((code || isTokenValid) && this.mounted) {
       getEvents().then((events) => {
         if (this.mounted) {
-          this.setState({
-            events,
-            locations: extractLocations(events),
-            warningText: ''
-          });
-        } else {
-          getEvents().then((events) => {
-            this.setState({
-              events,
-              locations: extractLocations(events),
-              warningText: 'You are offline. The displayed event list may not be up to date.',
-            });
-          })
+          this.setState({ events, locations: extractLocations(events) });
         }
+      });
+    }
+    if (!navigator.onLine) {
+      this.setState({
+        OfflineAlertText: 'You are not connected to the internet'
+      });
+    } else {
+      this.setState({
+        OfflineAlertText: ''
       });
     }
   }
