@@ -6,7 +6,8 @@ import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { WarningAlert } from './Alert'
 import WelcomeScreen from './WelcomeScreen';
-import { getEvents, extractLocations, checkToken, getAccessToken, EventGenre } from
+import EventGenre from './EventGenre';
+import { getEvents, extractLocations, checkToken, getAccessToken } from
   './api';
 import {
   ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
@@ -25,24 +26,30 @@ class App extends Component {
   async componentDidMount() {
     this.mounted = true;
     const accessToken = localStorage.getItem('access_token');
-    const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+    const isTokenValid = (await checkToken(accessToken)).error ? false :
+      true;
     const searchParams = new URLSearchParams(window.location.search);
     const code = searchParams.get("code");
-    this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+    this.setState({
+      showWelcomeScreen: !(code || isTokenValid)
+    });
     if ((code || isTokenValid) && this.mounted) {
       getEvents().then((events) => {
         if (this.mounted) {
-          this.setState({ events, locations: extractLocations(events) });
+          this.setState({
+            events,
+            locations: extractLocations(events),
+            warningText: ''
+          });
+        } else {
+          getEvents().then((events) => {
+            this.setState({
+              events,
+              locations: extractLocations(events),
+              warningText: 'You are offline. The displayed event list may not be up to date.',
+            });
+          })
         }
-      });
-    }
-    if (!navigator.onLine) {
-      this.setState({
-        OfflineAlertText: 'You are not connected to the internet'
-      });
-    } else {
-      this.setState({
-        OfflineAlertText: ''
       });
     }
   }
@@ -84,36 +91,42 @@ class App extends Component {
     if (this.state.showWelcomeScreen === undefined) return <div
       className="App" />
 
+    let { events } = this.state;
     return (
       <div className="App">
+        {!navigator.onLine ? <WarningAlert
+          text='You are not connected to the internet.' /> :
+          <WarningAlert
+            text='' />
+        }
+
         <h1>Meet App</h1>
-        <WarningAlert warningText={this.state.warningText} />
 
         <CitySearch
           locations={this.state.locations}
           updateEvents={this.updateEvents} />
 
-        <h4>Events in each city</h4>
-
-        <ResponsiveContainer height={400} >
-          <ScatterChart
-            margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis type="category" dataKey="city" name="city" />
-            <YAxis type="number" dataKey="number" name="number of events" />
-            <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-            <Scatter data={this.getData()} fill="#8884d8" />
-          </ScatterChart>
-        </ResponsiveContainer>
-
-        <EventList
-          events={this.state.events}
-          numberOfEvents={this.state.numberOfEvents}
-        />
-
         <NumberOfEvents numberOfEvents={this.state.numberOfEvents}
           updateNumberOfEvents={this.updateNumberOfEvents} />
 
+        <h4>Events in each city</h4>
+
+        <div className="data-vis-wrapper">
+          <EventGenre events={events} />
+          <ResponsiveContainer height={200}>
+            <ScatterChart margin={{
+              top: 20, right: 20, bottom: 20, left: 20,
+            }}
+            >
+              <CartesianGrid />
+              <XAxis type="category" dataKey="city" name="city" />
+              <YAxis type="number" dataKey="number" name="number of events" />
+              <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+              <Scatter name="A school" data={this.getData()} fill="#8884d8" />
+            </ScatterChart>
+          </ResponsiveContainer>
+        </div>
+        <EventList events={this.state.events} />
         {/* <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen}
           getAccessToken={() => { getAccessToken() }} /> */}
       </div>
