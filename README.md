@@ -20,9 +20,9 @@ The objective of this app was to build a serverless, progressive web application
 
 ## WHAT IT LOOKS LIKE
 
-![screenshot_1](public/screenshot_1.png)
+![screenshot_1](/.public/screenshot_1.png)
 
-![screenshot_2](public/screenshot_2.png)
+![screenshot_2](./public/screenshot_2.png)
 
 
 ## LIVE DEMO LINK
